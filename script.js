@@ -35,8 +35,17 @@ function renderMenu(category = 'all') { if (category === 'all') { menuGrid.inner
 tabs.forEach(tab => tab.addEventListener('click', () => { const category = tab.dataset.category; setActive(category); if (category === 'all') { renderMenu('all'); document.querySelector('[data-menu-section]').scrollIntoView({ behavior: 'smooth', block: 'start' }); } else { renderMenu('all'); const section = document.querySelector('[data-menu-section=' + category + ']'); if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' }); } }));
 renderMenu('all');
 
+document.addEventListener('click', event => { const button = event.target.closest('.quick-fab-toggle'); if (!button) return; const fab = button.closest('.quick-fab'); const open = fab.classList.toggle('is-open'); button.setAttribute('aria-expanded', String(open)); button.setAttribute('aria-label', open ? 'Close quick actions' : 'Open quick actions'); }); document.addEventListener('click', event => { const link = event.target.closest('.quick-fab-actions a'); if (!link) return; const fab = link.closest('.quick-fab'); const button = fab.querySelector('.quick-fab-toggle'); fab.classList.remove('is-open'); button.setAttribute('aria-expanded', 'false'); button.setAttribute('aria-label', 'Open quick actions'); });
+
+document.addEventListener('click', event => { const speedDial = document.querySelector('.speed-dial'); if (speedDial && !event.target.closest('.speed-dial')) { speedDial.classList.remove('is-open'); const toggle = speedDial.querySelector('.speed-dial-toggle'); const actions = speedDial.querySelector('.speed-dial-actions'); toggle.setAttribute('aria-expanded', 'false'); actions.setAttribute('aria-hidden', 'true'); } }); document.addEventListener('keydown', event => { if (event.key !== 'Escape') return; const speedDial = document.querySelector('.speed-dial'); if (!speedDial) return; speedDial.classList.remove('is-open'); speedDial.querySelector('.speed-dial-toggle').setAttribute('aria-expanded', 'false'); speedDial.querySelector('.speed-dial-actions').setAttribute('aria-hidden', 'true'); });
+
 const header = document.querySelector('.site-header');
 const toggle = document.querySelector('.menu-toggle');
-window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 30), { passive: true });
-toggle.addEventListener('click', () => { const open = header.classList.toggle('menu-open'); toggle.setAttribute('aria-expanded', String(open)); });
+const root = document.documentElement;
+function syncHeaderHeight() { root.style.setProperty('--site-header-height', header.getBoundingClientRect().height + 'px'); }
+function updateHeader() { header.classList.toggle('scrolled', window.scrollY > 30); requestAnimationFrame(syncHeaderHeight); }
+syncHeaderHeight();
+window.addEventListener('scroll', updateHeader, { passive: true });
+window.addEventListener('resize', syncHeaderHeight, { passive: true });
+toggle.addEventListener('click', () => { const open = header.classList.toggle('menu-open'); toggle.setAttribute('aria-expanded', String(open)); requestAnimationFrame(syncHeaderHeight); });
 document.querySelectorAll('.mobile-nav a').forEach(link => link.addEventListener('click', () => { header.classList.remove('menu-open'); toggle.setAttribute('aria-expanded', 'false'); }));
