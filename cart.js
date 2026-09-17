@@ -33,7 +33,7 @@ const sideOptions = [{ name: 'Sukuma Wiki', price: 3000 }, { name: 'Posho', pric
 function getCartItem(button) { const card = button.closest('.menu-card'); const name = card.querySelector('h3').textContent; const size = button.dataset.size ? button.dataset.size[0].toUpperCase() + button.dataset.size.slice(1) : ''; const priceSource = button.dataset.size ? button.querySelector('strong').textContent : card.querySelector('.menu-card-price').textContent; return { key: name + '-' + size, name, size, price: priceNumber(priceSource), quantity: 1 }; }
 function pushCartItem(item) { const existing = cart.find(entry => entry.key === item.key); if (existing) existing.quantity += 1; else cart.push(item); }
 function openSidePicker(button) { let modal = document.querySelector(".side-picker"); if (!modal) { modal = document.createElement("div"); modal.className = "side-picker"; modal.innerHTML = `<div class="side-picker-backdrop" data-side-close></div><div class="side-picker-panel" role="dialog" aria-modal="true" aria-labelledby="side-picker-title"><button class="side-picker-close" type="button" data-side-close aria-label="Close side selection">×</button><span class="card-kicker">Build your plate</span><h2 id="side-picker-title">Choose your<br /><em>sides.</em></h2><p>Select what you would like served with this dish.</p><div class="side-picker-options">${sideOptions.map((side, index) => `<label><input type="checkbox" value="${index}"><span>${side.name}</span><strong>${cartFormat(side.price)}</strong></label>`).join("")}</div><button class="button button-blue side-picker-confirm" type="button">Add dish &amp; sides <span>+</span></button></div>`; document.body.appendChild(modal); modal.addEventListener("click", event => { if (event.target.closest("[data-side-close]")) modal.classList.remove("is-open"); if (event.target.closest(".side-picker-confirm")) { const main = getCartItem(modal._button); pushCartItem(main); modal.querySelectorAll("input:checked").forEach(input => { const side = sideOptions[Number(input.value)]; pushCartItem({ key: side.name, name: side.name, size: "Side", price: side.price, quantity: 1 }); }); modal.querySelectorAll("input").forEach(input => { input.checked = false; }); modal.classList.remove("is-open"); updateCart(); } }); } modal._button = button; modal.classList.add("is-open"); }
-function addToCart(button) { const category = menuItems[Number(button.dataset.itemIndex)] ? menuItems[Number(button.dataset.itemIndex)].category : ''; if ((category === 'goat' || category === 'chicken') && !button.dataset.sideConfirmed) { openSidePicker(button); return; } delete button.dataset.sideConfirmed;
+function addToCart(button) {
   const card = button.closest('.menu-card');
   const name = card.querySelector('h3').textContent;
   const size = button.dataset.size ? button.dataset.size[0].toUpperCase() + button.dataset.size.slice(1) : '';
@@ -47,6 +47,8 @@ function addToCart(button) { const category = menuItems[Number(button.dataset.it
 }
 
 document.querySelector('#menu-grid').addEventListener('click', event => {
+  const sidesButton = event.target.closest('[data-add-sides]');
+  if (sidesButton) { openSidePicker(sidesButton); return; }
   const button = event.target.closest('[data-add-item]');
   if (button) addToCart(button);
 });
