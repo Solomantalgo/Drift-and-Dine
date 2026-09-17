@@ -89,7 +89,7 @@ const tabs = document.querySelectorAll('.menu-category-grid button');
 const menuGroups = ['breakfast', 'hotdrinks', 'goat', 'fish', 'chicken', 'beef', 'pilau', 'pizza', 'platters'];
 const categoryLabels = { breakfast: 'Breakfast', hotdrinks: 'Hot drinks', goat: 'Goat corner &amp; sides', fish: 'Fish corner', chicken: 'Chicken corner &amp; sides', beef: 'Beef corner', pilau: 'Pilau &amp; wraps', pizza: 'Pizza', platters: 'Platters' };
 function priceMarkup(item, index) {
-  const isSideOptional = ['goat', 'chicken', 'beef'].includes(item.category);
+  const isSideOptional = ['goat', 'chicken'].includes(item.category);
   const addButton = item.sizes ? '<button type=\'button\' class=\'menu-add\' data-add-item data-item-index=\'' + index + '\' data-size=\'small\'><span>Small</span><strong>' + item.sizes.small + '</strong></button><button type=\'button\' class=\'menu-add\' data-add-item data-item-index=\'' + index + '\' data-size=\'large\'><span>Large</span><strong>' + item.sizes.large + '</strong></button>' : '<button type=\'button\' class=\'menu-add menu-add-single\' data-add-item data-item-index=\'' + index + '\'><span>Add to order</span><strong>+ </strong></button>';
   const sidesButton = isSideOptional ? '<button type=\'button\' class=\'menu-add menu-add-sides\' data-add-sides data-item-index=\'' + index + '\'><span>Pick sides</span><strong>+</strong></button>' : '';
   return '<div class=\'menu-order-options\'>' + addButton + sidesButton + '</div>';
