@@ -55,9 +55,10 @@ menuItems.forEach(item => {
   if (item.name === 'Dryfry Goat Meat (Kilo)' || item.name === 'Wetfry Goat Meat (Kilo)') item.image = 'images/NewImages/food/Goat-Corner/Dry-goat-kilo.jpg';
   if (item.name === 'Dryfry Goat Meat (Half)' || item.name === 'Dryfry Goat Meat Half' || item.name === 'Wetfry Goat Meat (Half)') item.image = 'images/NewImages/food/Goat-Corner/dry-goat-half.jpg';
   if (item.category === 'goat' && item.name.includes('Wet') && item.name.includes('Goat')) item.image = 'images/NewImages/food/Goat-Corner/Wet-Fry Goat Meat.jfif';
-  if (item.name === 'Whole Fish, Wetfry') item.image = 'proposed%20images/whole-fish-wetfry.jpg';
-  if (item.category === 'fish' && item.name.includes('Deep Fried')) item.image = 'images/NewImages/food/whole-deep-fried-fish-compressed.jpg';
-  if (item.category === 'fish' && item.name.includes('Grilled Fish Fillet')) item.image = 'images/NewImages/food/grilled-fish-fillet-compressed.jpg';
+  if (item.category === 'fish' && item.name.includes('Whole Fish') && item.name.includes('Deep Fried')) item.image = 'images/NewImages/food/Fish/Whole Fish, Deep Fried.jfif';
+  if (item.category === 'fish' && item.name.includes('Whole Fish') && item.name.includes('Wet')) item.image = 'images/NewImages/food/Fish/whole-fish-wetfry.jpg';
+  if (item.category === 'fish' && item.name.includes('Grilled Fish Fillet')) item.image = 'images/NewImages/food/Fish/Grilled Fish Fillet.jfif';
+  if (item.category === 'fish' && item.name.includes('Fish Fingers')) item.image = 'images/NewImages/food/Fish/Fish Fingers.jfif';
   if (item.category === 'chicken' && item.name === 'Chicken Brochette') item.image = 'images/NewImages/food/Chicken/Chicken Brochette.jfif';
   if (item.category === 'chicken' && item.name.includes('Wet Fry')) item.image = 'images/NewImages/food/Chicken/Chicken (Local), Wet Fry.jfif';
   if (item.category === 'chicken' && item.name.includes('Boiled')) item.image = 'images/NewImages/food/Chicken/Chicken (Local), Boiled.jfif';
