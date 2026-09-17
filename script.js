@@ -48,6 +48,9 @@ menuItems.forEach(item => {
   if (categoryImages[item.category]) item.image = categoryImages[item.category];
   if (item.category === 'breakfast' && breakfastImages[item.name]) item.image = breakfastImages[item.name];
   if (item.category === 'hotdrinks' && hotDrinkImages[item.name]) item.image = hotDrinkImages[item.name];
+  if (item.category === 'pilau' && item.name === 'Chicken Pilau') item.image = 'images/NewImages/food/Pilau/Chicken Pilau.jfif';
+  if (item.category === 'pilau' && item.name === 'Beef Pilau') item.image = 'images/NewImages/food/Pilau/Beef Pilau.jfif';
+  if (item.category === 'pilau' && item.name === 'Goat Pilau') item.image = 'images/NewImages/food/Pilau/Goat Pilau.jpeg';
   if (item.category === 'goat' && item.name.includes('Choma')) item.image = 'images/NewImages/food/Goat-Corner/Goat Choma.jfif';
   if (item.name === 'Dryfry Goat Meat (Kilo)' || item.name === 'Wetfry Goat Meat (Kilo)') item.image = 'images/NewImages/food/Goat-Corner/Dry-goat-kilo.jpg';
   if (item.name === 'Dryfry Goat Meat (Half)' || item.name === 'Dryfry Goat Meat Half' || item.name === 'Wetfry Goat Meat (Half)') item.image = 'images/NewImages/food/Goat-Corner/dry-goat-half.jpg';
