@@ -51,6 +51,11 @@ menuItems.forEach(item => {
   if (item.category === 'pilau' && item.name === 'Chicken Pilau') item.image = 'images/NewImages/food/Pilau/Chicken Pilau.jfif';
   if (item.category === 'pilau' && item.name === 'Beef Pilau') item.image = 'images/NewImages/food/Pilau/Beef Pilau.jfif';
   if (item.category === 'pilau' && item.name === 'Goat Pilau') item.image = 'images/NewImages/food/Pilau/Goat Pilau.jpeg';
+  if (item.category === 'beef' && item.name === 'Beef Steak') item.image = 'images/NewImages/food/Beef/Beef Steak.jfif';
+  if (item.category === 'beef' && item.name === 'Beef Curry') item.image = 'images/NewImages/food/Beef/Beef Curry.jfif';
+  if (item.category === 'beef' && item.name === 'Beef Stew / Steak') item.image = 'images/NewImages/food/Beef/Beef Stew  Steak (Wetfry Beef Steak).jfif';
+  if (item.category === 'beef' && item.name === 'Beef Stroganoff') item.image = 'images/NewImages/food/Beef/Beef Stroganoff.jfif';
+  if (item.category === 'beef' && item.name === 'Pan Fried Beef') item.image = 'images/NewImages/food/Beef/Pan Fried Beef.jfif';
   if (item.category === 'goat' && item.name.includes('Choma')) item.image = 'images/NewImages/food/Goat-Corner/Goat Choma.jfif';
   if (item.name === 'Dryfry Goat Meat (Kilo)' || item.name === 'Wetfry Goat Meat (Kilo)') item.image = 'images/NewImages/food/Goat-Corner/Dry-goat-kilo.jpg';
   if (item.name === 'Dryfry Goat Meat (Half)' || item.name === 'Dryfry Goat Meat Half' || item.name === 'Wetfry Goat Meat (Half)') item.image = 'images/NewImages/food/Goat-Corner/dry-goat-half.jpg';
